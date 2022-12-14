@@ -1,0 +1,94 @@
+label {
+  display: block;
+  color: white;
+}
+
+input {
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 4px 0 12px 0;
+  width: 100%;
+}
+
+h2 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.swap-image {
+  width: 24px;
+  height: 24px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.conversion-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.balance {
+  margin-top: -8px;
+  text-align: end;
+}
+
+.conversion-button {
+  background-color: white;
+  padding: 12px;
+  border-radius: 16px;
+  border: none;
+  margin-top: 42px;
+  cursor: pointer;
+}
+
+.bridge-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bridge-conversion-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 320px;
+  width: 100%;
+}
+
+.bridge-title {
+  position: absolute;
+  font-family: "BenchNine", sans-serif;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+  color: #cccccc11;
+  font-size: 250px;
+  text-align: center;
+  user-select: none;
+}
+
+@media (max-width: 850px) {
+  .bridge-background-image {
+    width: 93%;
+    height: 93%;
+    margin-top: 1.5vw;
+    margin-left: 0;
+  }
+
+  .bridge-title {
+    font-size: 20vw;
+  }
+}

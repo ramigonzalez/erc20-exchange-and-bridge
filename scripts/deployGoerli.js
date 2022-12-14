@@ -2,16 +2,12 @@ const { ethers } = require('hardhat');
 const fs = require('fs');
 const path = require('path');
 const { getContractAddress } = require('@ethersproject/address');
+require('dotenv').config();
 
 const ERC20_Ethereum = {
     name: 'ERC20_Ethereum',
     symbol: 'TETH',
     maxSupply: ethers.utils.parseEther('1000000'),
-};
-
-const ERC20_Polygon = {
-    name: 'ERC20_Polygon',
-    symbol: 'TPOL',
 };
 
 const getContractInfo = async (index, signer) => {
@@ -30,21 +26,15 @@ const preCalculateFutureContractAddress = async (signer, txnsAhead = 0) => {
 };
 
 // Contracts to deploy
-const contractsToDeploy = ['ERC20_Ethereum', 'ERC20_Polygon', 'Exchange', 'Bridge_Ethereum', 'Bridge_Polygon'];
-const variablesToDeploy = [
-    [ERC20_Ethereum.name, ERC20_Ethereum.symbol, ERC20_Ethereum.maxSupply],
-    [ERC20_Polygon.name, ERC20_Polygon.symbol],
-    [ethers.utils.parseEther('50')],
-    [],
-    [],
-];
+const contractsToDeploy = ['ERC20_Ethereum', 'Exchange', 'Bridge_Ethereum'];
+const variablesToDeploy = [[ERC20_Ethereum.name, ERC20_Ethereum.symbol, ERC20_Ethereum.maxSupply], [ethers.utils.parseEther('50')], []];
 
 async function main() {
     // Get provider
     const provider = ethers.provider;
 
     // Get signer
-    const [signer, tokenVault] = await ethers.getSigners();
+    const [signer] = await ethers.getSigners();
 
     let deployedContracts = [];
     // Get Contracts to deploy
@@ -56,21 +46,21 @@ async function main() {
         const deployedContract = await contractFactory.deploy(...variablesToDeploy[i]);
 
         if (i === 0) {
-            const tokensToTransfer = variablesToDeploy[2][0];
+            const tokensToTransfer = variablesToDeploy[1][0];
             // 1. Precalculate Exchange future address for a contract that will be deployed 2 TXs ahead
             const txnsAhead = 3;
             const exchangeContractFutureAddress = await preCalculateFutureContractAddress(signer, txnsAhead);
 
             // 2. [TX #1] Approve certain value for exchange be able to transfer founds while is being deployed
-            await deployedContract.approve(exchangeContractFutureAddress, tokensToTransfer);
+            const approveTx = await deployedContract.approve(exchangeContractFutureAddress, tokensToTransfer);
+            await approveTx.wait();
 
             // 3. [TX #2] Make sure that tokenVault has a greater or equals token balance than `_tokenAmount`
-            await deployedContract.transfer(tokenVault.address, tokensToTransfer);
+            const transferTx = await deployedContract.transfer(process.env.GOERLI_TOKEN_VAULT_ACCOUNT, tokensToTransfer);
+            await transferTx.wait();
 
-            variablesToDeploy[2] = [tokenVault.address, deployedContract.address, tokensToTransfer, { value: ethers.utils.parseEther('5') }];
-            variablesToDeploy[3] = [deployedContract.address];
-        } else if (i === 1) {
-            variablesToDeploy[4] = [deployedContract.address];
+            variablesToDeploy[1] = [process.env.GOERLI_TOKEN_VAULT_ACCOUNT, deployedContract.address, tokensToTransfer, { value: ethers.utils.parseEther('5') }];
+            variablesToDeploy[2] = [deployedContract.address];
         }
 
         deployedContracts = [...deployedContracts, deployedContract];

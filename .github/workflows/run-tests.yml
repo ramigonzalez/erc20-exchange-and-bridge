@@ -1,0 +1,26 @@
+name: Run tests
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  test_on_linux:
+    name: Test project on linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm install
+      - name: Run Tests
+        run: npx hardhat test
+        env:
+          GANACHE_ACCESSPOINT_URL: HTTP://127.0.0.1:7545
+          GANACHE_ACCOUNT: "0x0000000000000000000000000000000000000001"
+          GANACHE_PRIVATE_KEY: "1000000000000000000000000000000000000000000000000000000000000001"
+          RINKEBY_ACCESSPOINT_URL: https://rinkeby.infura.io/v3/6763a12219584eb1922871968219f252
+          RINKEBY_ACCOUNT: "0x0000000000000000000000000000000000000001"
+          RINKEBY_PRIVATE_KEY: "1000000000000000000000000000000000000000000000000000000000000001"

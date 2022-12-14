@@ -1,0 +1,47 @@
+.header-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 32px;
+    z-index: 2;
+}
+
+.header-option {
+    font-family: 'BenchNine', sans-serif;
+    font-size: 24px;
+    margin-left: 24px;
+    color: #dddddd;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+}
+
+.header-selected {
+    text-decoration: underline;
+}
+
+.header-option:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .header-container {
+        padding: 24px 32px;
+        background-color: #333333;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        justify-content: space-evenly;
+    }
+    .header-option {
+        font-size: 20px;
+        margin: 0;
+    }
+}

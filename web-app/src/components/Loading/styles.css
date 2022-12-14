@@ -1,0 +1,35 @@
+.loading-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6vh;
+    background: linear-gradient(#333333, #000000);
+    overflow: hidden;
+    z-index: 3;
+}
+
+.loading-wheel {
+    border: 3px solid transparent;
+    border-top: 3px solid #00ffff88;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation-name: rounded;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rounded {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

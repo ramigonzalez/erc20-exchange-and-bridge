@@ -1,0 +1,8 @@
+.metamaskButton {
+    background-color: white;
+    padding: 12px;
+    border-radius: 16px;
+    border: none;
+    margin: 20px 0 20px 0;
+    cursor: pointer;
+}

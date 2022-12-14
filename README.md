@@ -1,46 +1,123 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=9198438&assignment_repo_type=AssignmentRepo)
-# Bridge-Template
+# Obligatorio 2 - blockchain
 
-## Setup
+Bruno Pintos - 214108
+Ramiro Gonzalez - 167011
 
-1. Clonar el repositorio
+## Descripción del proyecto
 
-2. Complete sus datos:
-  * NUMERO DE ESTUDIANTE:
-  * NOMBRE DE ESTUDIANTE:
-  * ADDRESS DE SU CUENTA:
-  * ADDRESS DEL CONTRATO:
+Este proyecto se trata de la implementacion de un exchange descentralizado con una implementacion de unico punto de falla que son los owner y la boveda de tokens centralizados.
 
-3. Installar hardhat `npm install hardhat --save-dev`
+Tambien permite el pasage de tokens ERC20 del protocolo llamados TETH en ethereum y TPOL en polygon entre redes.
 
-4. Instalar dependencias `npm install`
+## Gestion del proyecto
+El proyecto fue gestionado mediante un github project: https://github.com/orgs/Prog-Contratos-Inteligentes-Blockchain/projects/4/views/1
+## Componentes del proyecto
 
-5. Complete la información del archivo `.env` en el directorio raiz de la carpeta. Si no utilizará Ganache para sus pruebas quitelo de la configuración.
+El proyecto esta compuesto por varias carpetas.
 
-6. Configure el archivo `hardhat.config.js` según sus necesidades
+### contracts
 
-## Task
+En esta carpeta se encuentran todos los contratos del proyecto:
 
-Se desea crear un ecosistema financiero basado en blockchain, donde los usuarios puedan comprar y vender token fungibles a cambio de ethers e intercambiarlos entre las redes blockchain de Ethereum y Polygon.
+-   ERC20_Ethereum
+-   ERC20_Polygon
+-   Exchange
+-   Bridge_Ethereum
+-   Bridge_Polygon
+    A su vez, hay otros contratos auxiliares, e interfaces (dentro de la carpeta `interfaces`), para no repetir código y encapsular determinadas funcionalidades.
 
-Para esto se requiere el desarrollo de un token fungible que siga el estándar ERC-20 visto en el curso. Además, se deberá desarrollar un Exchange para poder comprar y vender el token fungible y un Bridge para poder interactuar con las redes blockchain mencionadas.
+### scripts
 
-El ecosistema debe poder ser integrado a las DApps de la red de Ethereum y a las DApps de la red de Polygon, por lo que será necesario manejar un bridge (puente) entre ambas redes para poder negocios activos en ambos ecosistemas por medio del token fungible de cada ecosistema.
+En esta carpeta solo se encuentra 1 archivo, el archivo `deploy.js` que deploya los 5 contratos mencionados anteriormente.
 
-Las interfaces operativas de algunas de las plataformas le serán definidas por el profesor de la materia, por lo que deberá implementar dichas interfaces en sus contratos inteligentes, así como diseñar e implementar todos los contratos y método auxiliares que sean necesarios.
-Debe trabajar de forma flexible, de forma de poder afrontar cambios repentinos en los requerimientos del sistema.
+### test
 
-Utilice para todos sus comentarios la nomenclatura definida por ´Ethereum Natural Language Specification Format´ (´natspec´). Referencia: https://docs.soliditylang.org/en/v0.8.16/natspec-format.html
+En esta carpeta se encuentran todas las pruebas unitarias para los 5 contratos mencionados.
 
-Complete el script de deploy `deploy.js` ubicado en la carpeta 'scripts' y deploye el contrato a la red Goerli.
-Complete el script de test `contract.test.js` ubicado en la carpeta 'test'.
+-   token-ethereum.test.js
+-   token-polygon.test.js
+-   exchange.test.js
+-   bridge-ethereum.test.js
+-   bridge-polygon.test.js
 
-Ejecute sus teste con el comando: `npx hardhat test`.
+### web-app
 
-## **IMPORTANTE** Suba sus cambios al repositorio
+En esta carpeta se encuentra el front-end, una aplicacion React que utiliza los contratos deployados.
 
-1. Publicar cambios a su repositorio
+## Pasos para hacer el Setup del repositorio
 
-`git add .`  
-`git commit -m "<<your comments here>>"`  
-`git push origin main`
+1. Crear un `.env` file en el root del proyecto, y ponerle la información del archivo `.env.sample`
+
+2. De ser necesario, cambiar la configuracion del archivo `hardhat.config.js` (por ejemplo si se quiere deployar en alguna otra red)
+
+3. Instalar dependencias `npm install`
+
+## Pasos para hacer el Deploy del proyecto
+
+Para hacer el deploy del proyecto, depende de en qué red queramos hacerlo, pero tenemos algunos comandos en el package.json:
+
+-   `npm run deploy-hardhat` deployará los contratos en hardhat
+-   `npm run deploy-ganache` deployará los contratos en ganache
+-   `deploy-goerli` deployará los contratos de Ethereum en goerli (token, exchange y bridge)
+-   `deploy-mumbai` deployará los contratos de Polygon en mumbai (token y bridge)
+-   `deploy-goerli-mumbai` es una combinación de los dos anteriores, deploya todos los contratos en sus respectivas redes (goerli o mumbai)
+
+Importante: Verificar que tengamos una configuración correcta en `hardhat.config.js` y que tengamos el `.env` completo.
+
+## Pasos para hacer la ejecución del test del proyecto
+
+Para hacer la ejecución del test del proyecto, tenemos 1 comando en el package.json:
+
+-   `npm run test`
+
+Este comando ejecutara todas las pruebas unitarias, para todos los contratos.
+
+## Pasos para la ejecucion de coverage del projecto
+```
+npm run coverage
+```
+
+## Pasos para ejecutar el front end
+
+Leer el `README.md` dentro de la carpeta `web-app`
+
+## Address de contratos deployados en testnet
+
+ERC20_Ethereum: 0x9809F7Ffa67C37ed37a4C2afa2240bdf001D0B1A
+ERC20_Polygon: 0x0c569b4Cc5707B276F89a944E087302155b6bF0f
+Exchange: 0xE45C3d92a31535716Ba61A35424506Bc6f70EE76
+Bridge_Ethereum: 0xf39add3f871E35458F9db18a43EbBC81a28F9a4f
+Bridge_Polygon: 0xA6B1D353A9831C1AcB80B20F7f4f0E693951f17a
+
+## Integrantes del equipo
+
+Bruno Pintos - 214108
+Ramiro Gonzalez - 167011
+
+# Presentación en video del trabajo
+
+## Descripcion
+- El equipo debe realizar una presentación en video del trabajo realizado de 3 a 5 minutos de duración, donde se mostrarán entre otros aspectos los siguientes:
+- [ ] Back - Funcionalidades principales desarrolladas
+- [ ] Github Project - Cumplimiento de los se pide y tareas a realizar
+- [ ] Compilación, test, coverage
+- [ ] Deploy del contrato a ganache (para ahorrar costos)
+- [ ] Funcionamiento del frontend (En ganche) (En testnet Goerli y Mumbai no funciona correctamente el bridge)
+- [ ] Aspectos destacados, como el buen uso de buenas prácticas de codificación y desarrollo.
+  - Uso de Herencia: 
+    - `Blacklist` para bridges
+    - `Validations` para compartir validaciones
+    - `ERC20` para compartir implementacion del estandar de token ERC-20
+  - Uso de interfaces para exponer metodos de contratos
+    - IERC20Ethereum
+    - IERC20Polygon
+  - Utilizacion de patron `Check-Effect-Interact`
+  - Test unitario y TDD para algunas funcionalidades
+  - `Ownable` pattern
+  - Ahorro de GAS:
+    - short circuiting en validaciones (menos costosas primero)
+    - tipos de datos (en numeros mayormente uint256 excepto los definidos por letra como decimals)
+    - uso de `revert` en lugar de `require`
+- [ ] Git - Commits realizados por cada integrante del esquipo y el uso de branches
+
+## Link del video
