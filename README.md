@@ -120,4 +120,11 @@ Ramiro Gonzalez - 167011
     - uso de `revert` en lugar de `require`
 - [ ] Git - Commits realizados por cada integrante del esquipo y el uso de branches
 
+## Diagrama Transfer to Polygon
+![transfer-to-polygon](https://user-images.githubusercontent.com/40214297/207489307-86964094-2d8e-4c39-9151-f9f00dbdf69a.png)
+
+## Diagrama Transfer to Ethereum
+![transfet-to-ethereum](https://user-images.githubusercontent.com/40214297/207489330-0d34a15b-bca7-46ce-bae4-6f6e04fe2623.png)
+
 ## Link del video
+https://youtu.be/NBIOrYRbqWA
