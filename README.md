@@ -6,6 +6,26 @@ This is a dapp platform where allow users to swap a provided ERC20 token for ETH
 - There is a centralized token vault where the exchange smart contract relies on.
 - An ERC20 token is provided for both Ethereum and Polygon newtworks and they differe in their implementations
 
+## Featured technical details
+- Use of inheritance of following contracts:
+   - `Blacklist` for bridge contracts
+   - `Validations` to share validations
+   - `ERC20` to share ERC-20 token standard between `TokenEthereum` and `TokenPolygon` contracts
+- Use of interfaces to expone contract methods between contracts with `IERC20Ethereum` and `IERC20Polygon` interfaces
+- Use of `Check-Effect-Interact` pattern
+- Unit test development for all features
+- Use `Ownable` pattern
+- Use of gas optimization techniques:
+   - Short circuiting validations by setting less costly before
+   - Data types (mostly used **uint256** in numbers except on predefined **uint8**)
+   - Use of `revert` instead of `require`
+
+## Informal sequence diagrams
+### Diagrama Transfer to Polygon
+![transfer-to-polygon](https://user-images.githubusercontent.com/40214297/207489307-86964094-2d8e-4c39-9151-f9f00dbdf69a.png)
+### Diagrama Transfer to Ethereum
+![transfet-to-ethereum](https://user-images.githubusercontent.com/40214297/207489330-0d34a15b-bca7-46ce-bae4-6f6e04fe2623.png)
+
 ## Project structure
 | Path | Desctiption |
 | :-- | :-- | 
