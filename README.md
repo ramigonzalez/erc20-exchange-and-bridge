@@ -67,4 +67,13 @@ In order to simplify the deploy of the protocol, we provide scripts to do it loc
 - There is a home screen where users connect their metamask wallet
 - In the navigation tab you can go either exchange or bridge tab:
    - Exchange: you can exchange Ethers for TETH tokens
-   - Bridge: you can bridge TETH tokens (Ethereum ERC20) for TPOL tokens (Polygon ERC20) 
+   - Bridge: you can bridge TETH tokens (Ethereum ERC20) for TPOL tokens (Polygon ERC20)
+ 
+## Address de contratos deployados en testnet
+| Contract | Address |
+| :-- | :-- | 
+| ERC20_Ethereum | 0x9809F7Ffa67C37ed37a4C2afa2240bdf001D0B1A |
+| ERC20_Polygon | 0x0c569b4Cc5707B276F89a944E087302155b6bF0f |
+| Exchange | 0xE45C3d92a31535716Ba61A35424506Bc6f70EE76 |
+| Bridge_Ethereum | 0xf39add3f871E35458F9db18a43EbBC81a28F9a4f |
+| Bridge_Polygon | 0xA6B1D353A9831C1AcB80B20F7f4f0E693951f17a |
