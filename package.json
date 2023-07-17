@@ -19,7 +19,7 @@
         "ethers": "^5.6.4",
         "hardhat": "^2.12.4",
         "hardhat-contract-sizer": "^2.6.1",
-        "solc": "^0.8.14-fixed",
+        "solc": "0.8.16",
         "solidity-coverage": "^0.8.2"
     }
 }
